@@ -19,10 +19,12 @@ contract ArithmeticOperatorsTest is Test {
 
     function test_Addition() public {
         addition.addition(10);
+        addition.addition(20);
     }
 
     function test_Subtraction() public {
         subtraction.subtraction(10);
+        subtraction.subtraction(20);
     }
 
     function test_DivisionBy2() public view {
@@ -35,5 +37,31 @@ contract ArithmeticOperatorsTest is Test {
 }
 
 contract ArithmeticOperatorsOptimizedTest is Test {
-/* YOUR SOLUTION GOES HERE */
+    AdditionOptimized addition;
+    SubtractionOptimized subtraction;
+    DivisionOptimized division;
+
+    function setUp() public {
+        addition = new AdditionOptimized();
+        subtraction = new SubtractionOptimized();
+        division = new DivisionOptimized();
+    }
+
+    function test_Addition() external {
+        addition.addition(10);
+        addition.addition(20);
+    }
+
+    function test_Subtraction() external {
+        subtraction.subtraction(10);
+        subtraction.subtraction(20);
+    }
+
+    function test_DivisionBy2() public view {
+        division.divisionBy2(1024);
+    }
+
+    function test_DivisionBy128() public view {
+        division.divisionBy128(1024);
+    }
 }
