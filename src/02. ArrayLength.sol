@@ -20,7 +20,7 @@ contract ArrayLengthOptimized is IArrayLength {
         uint256 length = myArray.length;
 
         for (uint256 i; i < length; ++i) {
-            ++i;
+            unchecked { ++i; }
         }
     }
 }
