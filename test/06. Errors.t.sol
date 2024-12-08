@@ -13,6 +13,10 @@ contract ErrorsTest is Test {
         errors = new Errors();
     }
 
+    function test_call_as_owner() public view {
+        errors.call();
+    }
+
     function test_call() public {
         vm.startPrank(address(0x01));
         vm.expectRevert();
@@ -22,5 +26,20 @@ contract ErrorsTest is Test {
 }
 
 contract ErrorsOptimizedTest is Test {
-/* YOUR SOLUTION GOES HERE */
+    ErrorsOptimized errors;
+
+    function setUp() public {
+        errors = new ErrorsOptimized();
+    }
+
+    function test_call_as_owner() public view {
+        errors.call();
+    }
+
+    function test_call() public {
+        vm.startPrank(address(0x01));
+        vm.expectRevert();
+        errors.call();
+        vm.stopPrank();
+    }
 }

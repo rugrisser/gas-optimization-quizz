@@ -18,8 +18,17 @@ contract Errors is IErrors {
     function call() public view onlyOwner {}
 }
 
-contract ErrorsOptimized is IErrors {
-    /* YOUR SOLUTION GOES HERE */
+error Forbidden();
 
-    function call() public view {}
+contract ErrorsOptimized is IErrors {
+    address immutable owner = msg.sender;
+
+    modifier onlyOwner() {
+        if (owner != msg.sender) {
+            revert Forbidden();
+        }
+        _;
+    }
+
+    function call() external view onlyOwner {}
 }
